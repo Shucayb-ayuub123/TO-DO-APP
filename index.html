@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        width: 100%;
+        background-color: black;
+        height: 100vh;
+        display: flex;
+      
+
+        
+    }
+div .box1 {
+    width: 20%;
+    height: 50vh;
+    
+    background-color: antiquewhite;
+    position: relative;
+    
+}
+div .box2 {
+    width: 20%;
+    height: 50vh;
+    
+    background-color: blue;
+}
+div .box1::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 30px;
+    left: 10px;
+    position: absolute;
+    background-color: aqua;
+    z-index: -1;
+}
+</style>
+<body>
+    <div>
+
+        <div class="box1">1</div>
+        <div class="box2">2</div>
+    </div>
+</body>
+</html>
