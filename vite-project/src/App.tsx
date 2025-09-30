@@ -9,6 +9,7 @@ import VEIW from "./Components/VEIW-T";
 import INCOM from "./Components/INCOMP";
 import ProtectRout from "./Components/ProtectRout";
 import Profile from "./Components/Profile";
+import UPDATEtask from "./Components/UPDATEtask";
 
 const App = () => {
   return (
@@ -28,8 +29,9 @@ const App = () => {
           <Route path="AddTesk" element={<ADD />} />
           <Route path="veiw" element={<VEIW />} />
           <Route path="incomplete_task" element={<INCOM />} />
-          <Route path="Profile" element={<Profile />} />
+          <Route path="Pro" element={<Profile />} />
         </Route>
+          <Route path="/VEIW/ADD-T/:id" element={<UPDATEtask />} />
       </Routes>
     </div>
   );

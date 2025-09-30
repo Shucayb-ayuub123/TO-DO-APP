@@ -23,7 +23,7 @@ const Dashboard = () => {
   return (
     <div>
       <div className="flex">
-        <nav className="w-73   top-0 left-0 fixed h-screen bg-purple-500">
+        <nav className="w-70     top-0 left-0 fixed h-screen bg-purple-500">
           <div className="text-center w-full pt-20 pb-5 flex justify-center rounded-md">
             <h1 className="text-2xl font-Nav font-bold bg-white  px-4 py-2 w-50">
               TO-DO APP
@@ -42,19 +42,21 @@ const Dashboard = () => {
             <li className="bg-white px-2 py-2 rounded-md text-center font-Nav text-lg font-medium">
               <Link to="incomplete_task">INCOMPLETE TASK</Link>
             </li>
+            <li className="bg-white p-2 rounded-md text-center font-Nav text-lg mt-70 font-medium">
+              <Link to="Pro">
+                <div className="flex  justify-start items-center space-x-2  bg-white px-0 rounded-md cursor-pointer">
+                  <img src={profil_ava} className="w-10" alt="" />
+                  <div>
+                    <h1 className="font-Nav font-bold">{user?.username}</h1>
+                    <p className=" font-Nav">{user?.Email}</p>
+                  </div>
+                </div>{" "}
+              </Link>
+            </li>
           </ul>
-          <div className="px-2">
-            <div className="flex mt-30 justify-start items-center space-x-2 p-1 bg-white px-0 rounded-md cursor-pointer">
-              <img src={profil_ava} className="w-10" alt="" />
-              <div>
-                <h1 className="font-Nav font-bold">{user?.username}</h1>
-                <p className=" font-Nav">{user?.Email}</p>
-              </div>
-            </div>
-          </div>
         </nav>
 
-        <div className="flex-1 p-5">
+        <div className="flex-1 ml-75   justify-center items-center  ">
           <Outlet />
         </div>
       </div>

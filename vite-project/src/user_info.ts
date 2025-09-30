@@ -2,7 +2,7 @@
     id?:number,
     title?:string,
     Description?:string,
-    Date?:string,
+    
     username?:string,
     password?:string,
     Email?:string,

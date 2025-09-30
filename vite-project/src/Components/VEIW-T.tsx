@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { API } from "../api";
-import type { user_info } from "../user_info";
+import type { veiw } from "../Veiw";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const VEIW = () => {
-  const [Data, setData] = useState<user_info[]>([]);
-
+  const [Data, setData] = useState<veiw[]>([]);
+  
+  const navigate = useNavigate()
   const Data1 = async () => {
     const token = localStorage.getItem("token");
     if (!token) return alert("No token found, please login");
@@ -17,37 +19,72 @@ const VEIW = () => {
       });
       setData(res.data);
     } catch (error: any) {
-       if (error == Response) {
+      if (error == Response) {
         alert(error.data);
       } else {
         alert(error);
       }
     }
   };
+   
+   
+  
+
 
   useEffect(() => {
     Data1();
   }, []);
+
+  const getRelativeTime = (dateString: string|undefined) => {
+    if (!dateString) return "unknown";
+    const now = new Date();
+    const isoString = dateString.replace(" " , "T")
+    const date = new Date(isoString);
+    const diff = now.getTime() - date.getTime();
+
+    const seconds = Math.floor(diff / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const months = Math.floor(days / 30);
+    const years = Math.floor(days / 365);
+
+    if (years > 0) return `${years}y `;
+    if (months > 0) return `${months}mon `;
+    if (days > 0) return `${days}d `;
+    if (hours > 0) return `${hours}h `;
+    if (minutes > 0) return `${minutes}m `;
+    if (seconds > 0) return `${seconds}s `;
+    return "just now";
+  };
+
   return (
     <div>
       <h1 className="text-center font-Nav mt-7 text-2xl font-bold">
         All Tasks You created
       </h1>
-
       <br /> <br />
-      <div className="grid grid-cols-3 space-y-5">
-        {Data.map((Da , ) => (
-          <div className="w-md shadow-md border-1 border-purple-200 rounded-sm   " key={Da.id}>
-            <div className="p-5 flex justify-start flex-col gap-2 space-y-2" >
+      <div className="grid grid-cols-3 space-y-5 space-x-4">
+        {Data.map((Da) => (
+          <div
+            className="inline-block shadow-md border-1 border-purple-200 rounded-sm   "
+            key={Da.id}
+          >
+            <div className="p-3 flex justify-start flex-col gap-2 space-y-2">
               <div className="flex justify-between">
-                <h2 className="font-semibold font-Nav">
+                <h2 className="font-semibold font-Nav text-wrap">
                   Title :{" "}
                   <span className="font-normal font-Nav"> {Da.title} </span>{" "}
                 </h2>
+                
+
                 <h1 className="font-semibold">
-                  Created at :{" "}
-                  <span className="text-gray-500 text-md">{Da.Date && new Date(Da.Date).toLocaleDateString()}</span>
+                  Created at:{" "}
+                  <span className="text-gray-500">
+                    {getRelativeTime(Da.Date)}
+                  </span>
                 </h1>
+                
               </div>
               <p className="font-semibold font-Nav">
                 description :{" "}
@@ -55,14 +92,17 @@ const VEIW = () => {
               </p>
 
               <p className="font-semibold font-Nav">
-                status : <span className="font-Nav font-normal">Pending</span>
+                status :{" "}
+                <span className="font-Nav  text-red-600 font-semibold">
+                  Pending
+                </span>
               </p>
 
               <div className="flex space-x-4">
-                <button className="bg-green-600 text-white px-3 py-2 text-md rounded-sm">
+                <button className="bg-green-600 text-white px-3 py-2 text-md rounded-sm cursor-pointer"  onClick={() => navigate(`/VEIW/ADD-T/${Da.id}`)}>
                   UPDATE
                 </button>
-                <button className="bg-blue-600 text-white px-3 py-2 text-md rounded-sm">
+                <button className="bg-blue-600 text-white px-3 py-2 text-md rounded-sm cursor-pointer">
                   Complete
                 </button>
               </div>

@@ -1,36 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import type { user_info } from "../user_info";
 import { API } from "../api";
 
+const UPDATEtask = () => {
+  const { id } = useParams();
 
-const ADD = () => {
-  
-  const [Data, setData] = useState<user_info>({
+  const navigate = useNavigate()
+  const [EditUser, setEdit] = useState<user_info>({
     title: "",
     Description: "",
-   
   });
-    
-  const handleData = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const token = localStorage.getItem("token");
+  
 
+
+  const handleEdit = async () => {
     try {
-      await API.post("/user/Post/Addtask", Data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => alert(res.data));
+      const res = await API.get(`/user/Post/SELECT_USER/${id}`);
+      setEdit(res.data);
     } catch (error: any) {
-      if (error == Response) {
-        alert(error.data);
-      } else {
-        alert(error);
-      }
+      alert(error);
     }
   };
+
+  useEffect(() => {
+    handleEdit()
+  } , [])
+
+  const handleData = async (e: React.FormEvent) => {
+      e.preventDefault();
+    
+  
+      try {
+          await API.put(`/user/Post/User_UPDATE/${id}`, EditUser).then((res) => navigate("/Dashboard/veiw"))
+          
+      } catch (error: any) {
+        if (error == Response) {
+          alert(error.data);
+        } else {
+          alert(error);
+        }
+      }
+    };
+
   return (
-    <div className=" w-full flex justify-center items-center">
+    EditUser ? <div className=" w-full flex justify-center items-center">
       <div className="w-10/12 bg-white shadow-lg p-4">
         <div className="w-full flex justify-center">
           <h1 className="text-center pt-6 font-Nav text-2xl font-semibold shadow-md shadow-purple-300 w-md p-4">
@@ -44,8 +58,8 @@ const ADD = () => {
           <div className="w-full flex justify-center ">
             <input
               type="text"
-              value={Data.title}
-              onChange={(e) => setData({ ...Data, title: e.target.value })}
+              value={EditUser.title}
+              onChange={(e) => setEdit({ ...EditUser, title: e.target.value })}
               className=" focus:outline-none focus:ring-1 focus:ring-purple-400  border-2 rounded-md border-gray-400 w-2xl py-2 px-2"
               placeholder="title"
               required
@@ -55,9 +69,9 @@ const ADD = () => {
             <textarea
               name=""
               id=""
-              value={Data.Description}
+              value={EditUser.Description}
               onChange={(e) =>
-                setData({ ...Data, Description: e.target.value })
+                setEdit({ ...EditUser, Description: e.target.value })
               }
               placeholder="Description"
               cols={80}
@@ -88,8 +102,8 @@ const ADD = () => {
           </div>
         </form>
       </div>
-    </div>
+    </div> : null
   );
 };
 
-export default ADD;
+export default UPDATEtask;
