@@ -29,7 +29,7 @@ const Profile = () => {
           <img src={profile} alt="" className="w-28"/>
         </div>
 
-        <div className="w-full flex flex-col text-center">
+        <div className="w-full flex flex-col text-start">
           <h1 className="font-Nav font-bold">Name :  <span className="font-Nav font-medium">{User_data.username}</span>  </h1>
           <h1 className="font-Nav font-bold">Email : <span className="font-Nav font-medium">{User_data.Email}</span></h1>
         </div>

@@ -4,5 +4,7 @@ export type veiw = {
   Description?: string;
   Date?: string;
   Email?: string;
-username?: string;
+  username?: string;
+
+  status?: string;
 };
