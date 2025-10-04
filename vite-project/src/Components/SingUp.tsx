@@ -17,8 +17,18 @@ const SingUp = () => {
     }
   }
   return (
-    <div className="w-full bg-gray-200 h-screen flex justify-center items-center ">
+    <div className="w-full bg-gray-200 h-screen flex justify-center items-center fixed ">
+
+      <div>
+
+         <div className=" flex justify-center items-center space-x-4 w-full md:hidden  rounded-4xl bg-amber-50 ">
+          <img src={logo} alt="" className="w-20 rounded-3xl"/>
+          <h1 className="text-center font-Nav text-xl font-bold">TO-DO APP</h1>
+        </div>
+
+        <br /> <br />
       <div className="w-xl bg-white  h-90 p-5 flex  justify-center items-center  rounded-md">
+
         <form
           action=""
           className=" w-full  space-y-7 flex-1"
@@ -34,7 +44,7 @@ const SingUp = () => {
               placeholder="Email"
               required
             
-              className=" w-xs border-1 border-gray-300 rounded-md focus:outline-0 p-2 focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+              className=" w-full border-1 border-gray-300 rounded-md focus:outline-0 p-2 focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
@@ -47,7 +57,7 @@ const SingUp = () => {
               placeholder="username"
               required
             
-              className=" w-xs border-1 border-gray-300 rounded-md focus:outline-0 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 p-2"
+              className=" w-full border-1 border-gray-300 rounded-md focus:outline-0 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 p-2"
             />
           </div>
 
@@ -60,21 +70,22 @@ const SingUp = () => {
               placeholder="password"
               required
             
-              className=" w-xs border-1 border-gray-300 rounded-md focus:outline-0 p-2 focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+              className=" w-full border-1 border-gray-300  rounded-md focus:outline-0 p-2 focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
           <div className="w-full flex justify-center">
-            <button className="bg-black px-7 py-1 text-white rounded-md text-lg font-Nav">
+            <button className="bg-black px-7 py-1 text-white rounded-md w-sm md:w-30 text-lg font-Nav">
               singUp
             </button>
           </div>
         </form>
 
-        <div className="flex-1 ">
+        <div className="flex-1 hidden md:block lg:block ">
           <img src={logo} alt="" className="w-50"/>
           <h1 className="text-center font-Nav text-xl font-bold">TO-DO APP</h1>
         </div>
+      </div>
       </div>
     </div>
   );

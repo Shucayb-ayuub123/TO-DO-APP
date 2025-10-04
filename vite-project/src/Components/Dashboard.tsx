@@ -28,9 +28,9 @@ const Dashboard = () => {
   return (
     <div>
       <div className="flex">
-        <nav className="w-70     top-0 left-0 fixed h-screen bg-purple-500">
-          <div className="text-center w-full pt-20 pb-5 flex justify-center rounded-md">
-            <h1 className="text-2xl font-Nav font-bold bg-white  px-4 py-2 w-50">
+        <nav className="  -translate-x-70   sm:w-70     top-0 left-0 fixed h-screen bg-purple-500 rounded-tr-lg rounded-br-lg">
+          <div className="text-center w-full pt-20 pb-5 flex justify-center ">
+            <h1 className="text-2xl font-Nav font-bold bg-purple-400  px-4 py-2 rounded-2xl w-50">
               TO-DO APP
             </h1>
           </div>
@@ -65,7 +65,7 @@ const Dashboard = () => {
           </ul>
         </nav>
 
-        <div className="flex-1 ml-75   justify-center items-center  ">
+        <div className="smflex-1 ml-75   justify-center items-center  ">
           <Outlet />
         </div>
       </div>
